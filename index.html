@@ -48,10 +48,10 @@
             box-shadow: 0 0 15px #00f5ff;
         }
         
-        .history-card, .recent-card {
+        .history-card, .recent-card, .cloud-card {
             transition: all 0.3s ease;
         }
-        .history-card:hover, .recent-card:hover {
+        .history-card:hover, .recent-card:hover, .cloud-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
         }
@@ -80,6 +80,7 @@
                 <a onclick="scrollToSection('conditions-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud-sun"></i> CONDITIONS</a>
                 <a onclick="scrollToSection('recent-tornadoes')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-tornado"></i> RECENT</a>
                 <a onclick="scrollToSection('history-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-clock-rotate-left"></i> HISTORY</a>
+                <a onclick="scrollToSection('clouds-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud"></i> CLOUDS</a>
                 <a onclick="scrollToSection('cams-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-video"></i> SKY CAMS</a>
             </div>
             
@@ -161,7 +162,7 @@
         </div>
     </div>
 
-    <!-- NOTABLE TORNADOES IN THE LAST 20 YEARS (10 entries) -->
+    <!-- NOTABLE TORNADOES – LAST 20 YEARS -->
     <div id="recent-tornadoes" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
             <i class="fa-solid fa-tornado text-red-400"></i> NOTABLE TORNADOES NEAR WICHITA – LAST 20 YEARS (2006–2026)
@@ -170,66 +171,160 @@
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">April 29, 2022</div>
                 <div class="text-2xl font-semibold mt-2">Andover EF3</div>
-                <div class="mt-4 text-sm text-gray-300">12.8-mile path through Andover and eastern Wichita suburbs. Over 1,000 structures damaged, ~300–400 destroyed. 3 injuries.</div>
+                <div class="mt-4 text-sm text-gray-300">12.8-mile path through Andover and eastern suburbs. Hundreds of homes damaged.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">April 14, 2012</div>
                 <div class="text-2xl font-semibold mt-2">Southeast Wichita EF3</div>
-                <div class="mt-4 text-sm text-gray-300">Part of a massive 86-tornado outbreak. Heavy damage to Oaklawn and Pinaire Mobile Home Park areas.</div>
-            </div>
-            <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">May 19, 2013</div>
-                <div class="text-2xl font-semibold mt-2">Multiple EF2 Tornadoes</div>
-                <div class="mt-4 text-sm text-gray-300">Several strong tornadoes affected Sedgwick County, including EF2 damage near Wichita.</div>
+                <div class="mt-4 text-sm text-gray-300">Part of massive outbreak. Heavy damage to Oaklawn and Pinaire areas.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">May 6, 2015</div>
-                <div class="text-2xl font-semibold mt-2">EF3 Tornado – Sedgwick County</div>
-                <div class="mt-4 text-sm text-gray-300">5.2-mile path with significant structural damage in the Wichita metro area.</div>
+                <div class="text-2xl font-semibold mt-2">Sedgwick County EF3</div>
+                <div class="mt-4 text-sm text-gray-300">Significant structural damage in the Wichita metro.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">May 2019</div>
-                <div class="text-2xl font-semibold mt-2">EF2–EF3 Series</div>
-                <div class="mt-4 text-sm text-gray-300">Multiple strong tornadoes across central Kansas, with impacts near the Wichita region.</div>
+                <div class="text-2xl font-semibold mt-2">Multiple EF2–EF3 Events</div>
+                <div class="mt-4 text-sm text-gray-300">Strong tornadoes across central Kansas including Wichita region.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">March 5–6, 2026</div>
-                <div class="text-2xl font-semibold mt-2">EF1 Tornadoes – Sumner County</div>
-                <div class="mt-4 text-sm text-gray-300">Two EF1 tornadoes near Mayfield/Argonia, just south of Wichita metro.</div>
+                <div class="text-2xl font-semibold mt-2">EF-1 Tornadoes near Mayfield</div>
+                <div class="mt-4 text-sm text-gray-300">Two confirmed EF-1 tornadoes just south of Wichita.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">May 2025</div>
                 <div class="text-2xl font-semibold mt-2">Suburban Tornadoes</div>
-                <div class="mt-4 text-sm text-gray-300">Multiple tornadoes impacted southeast and northeast Wichita suburbs.</div>
+                <div class="mt-4 text-sm text-gray-300">Multiple tornadoes impacted southeast and northeast Wichita.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">April 2015</div>
-                <div class="text-2xl font-semibold mt-2">EF0–EF2 Events</div>
-                <div class="mt-4 text-sm text-gray-300">Several weaker but notable tornadoes tracked through Sedgwick County.</div>
+                <div class="text-2xl font-semibold mt-2">EF0–EF2 Series</div>
+                <div class="mt-4 text-sm text-gray-300">Several tornadoes tracked through Sedgwick County.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
                 <div class="text-red-400 text-sm font-bold">May 2008</div>
-                <div class="text-2xl font-semibold mt-2">Active Outbreak Period</div>
-                <div class="mt-4 text-sm text-gray-300">Part of a very active tornado year in Kansas with multiple events near Wichita.</div>
+                <div class="text-2xl font-semibold mt-2">Active Outbreak</div>
+                <div class="mt-4 text-sm text-gray-300">Multiple tornadoes in the broader Wichita area.</div>
             </div>
             <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">2007–2008 Season</div>
-                <div class="text-2xl font-semibold mt-2">High Activity Years</div>
-                <div class="mt-4 text-sm text-gray-300">Kansas recorded hundreds of tornadoes statewide, with several impacting the broader Wichita region.</div>
+                <div class="text-red-400 text-sm font-bold">May 4, 2007</div>
+                <div class="text-2xl font-semibold mt-2">Greensburg EF5 Impact</div>
+                <div class="mt-4 text-sm text-gray-300">Statewide event that heightened awareness across Kansas.</div>
+            </div>
+            <div class="recent-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">April 26, 1991</div>
+                <div class="text-2xl font-semibold mt-2">Andover F5 (Reference)</div>
+                <div class="mt-4 text-sm text-gray-300">One of Kansas' most destructive tornadoes — still studied today.</div>
             </div>
         </div>
-        <p class="text-center text-xs text-gray-400 mt-10">Based on NWS Wichita surveys and local reports • EF ratings where available</p>
     </div>
 
-    <!-- TODAY IN WEATHER HISTORY & EXPANDED TORNADO HISTORY (kept from previous) -->
-    <!-- Paste your existing "Today in Weather History – April 7" and the 6-card expanded Tornado History here if you want them kept. -->
+    <!-- TODAY IN WEATHER HISTORY – APRIL 7 -->
+    <div class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
+        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
+            <i class="fa-solid fa-calendar-check"></i> TODAY IN WEATHER HISTORY – APRIL 7
+        </h2>
+        <div class="bg-white/5 border border-cyan-400/30 rounded-3xl p-10 max-w-2xl mx-auto">
+            <ul class="space-y-6 text-sm">
+                <li><span class="font-mono text-cyan-400">1936</span> – Part of a major multi-day tornado outbreak across the central U.S.</li>
+                <li><span class="font-mono text-cyan-400">2012</span> – Early setup leading into the historic April 14 tornado outbreak in Kansas.</li>
+                <li><span class="font-mono text-cyan-400">Recent Years</span> – Early April frequently signals the start of peak severe weather season in Kansas.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- EXPANDED TORNADO HISTORY -->
+    <div id="history-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
+        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
+            <i class="fa-solid fa-clock-rotate-left"></i> WICHITA-AREA TORNADO HISTORY
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">APRIL 26, 1991</div>
+                <div class="text-3xl font-semibold mt-2">Andover / Wichita F5</div>
+                <div class="text-cyan-300 mt-1">46-mile path • 17 fatalities • $300+ million damage</div>
+                <div class="mt-6 text-sm text-gray-300">Destroyed Golden Spur Mobile Home Park, damaged McConnell AFB, and tore through Haysville and southeast Wichita.</div>
+            </div>
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">APRIL 14, 2012</div>
+                <div class="text-3xl font-semibold mt-2">Southeast Wichita EF3</div>
+                <div class="text-cyan-300 mt-1">Part of 86-tornado outbreak</div>
+                <div class="mt-6 text-sm text-gray-300">Major damage to Oaklawn and Pinaire Mobile Home Park. No fatalities in Wichita but many injured.</div>
+            </div>
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">APRIL 29, 2022</div>
+                <div class="text-3xl font-semibold mt-2">Andover EF3</div>
+                <div class="text-cyan-300 mt-1">Strong tornado through eastern suburbs</div>
+                <div class="mt-6 text-sm text-gray-300">Significant tree and structural damage in Andover and eastern Wichita metro.</div>
+            </div>
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">MAY 25, 1955</div>
+                <div class="text-3xl font-semibold mt-2">Udall F5 (Nearby)</div>
+                <div class="text-cyan-300 mt-1">80+ fatalities</div>
+                <div class="mt-6 text-sm text-gray-300">Completely destroyed the town of Udall, one of Kansas’ deadliest tornadoes.</div>
+            </div>
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">MAY 4, 2007</div>
+                <div class="text-3xl font-semibold mt-2">Greensburg EF5</div>
+                <div class="text-cyan-300 mt-1">11 fatalities • Town nearly wiped out</div>
+                <div class="mt-6 text-sm text-gray-300">1.7-mile wide EF5 that led to major building code improvements across Kansas.</div>
+            </div>
+            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="text-red-400 text-sm font-bold">MAY 2019</div>
+                <div class="text-3xl font-semibold mt-2">Multiple EF2–EF3 Events</div>
+                <div class="text-cyan-300 mt-1">Wichita metro impacts</div>
+                <div class="mt-6 text-sm text-gray-300">Series of strong tornadoes across central Kansas including areas near Wichita.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLOUD TYPES (clean boxes, no pictures) -->
+    <div id="clouds-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
+        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
+            <i class="fa-solid fa-cloud"></i> COMMON CLOUD TYPES
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Cumulus</div>
+                <div class="text-cyan-300">Puffy white "cotton ball" clouds</div>
+                <div class="mt-4 text-sm text-gray-300">Fair weather clouds. Can grow tall and become thunderstorms on hot, humid days.</div>
+            </div>
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Cumulonimbus</div>
+                <div class="text-red-300">Towering thunderstorm clouds</div>
+                <div class="mt-4 text-sm text-gray-300">Anvil-shaped. Bring heavy rain, hail, lightning, strong winds, and tornadoes.</div>
+            </div>
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Cirrus</div>
+                <div class="text-cyan-300">High, thin wispy clouds</div>
+                <div class="mt-4 text-sm text-gray-300">"Mare's tails" — often mean a weather change is coming within 24 hours.</div>
+            </div>
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Stratus</div>
+                <div class="text-cyan-300">Low, flat gray blanket</div>
+                <div class="mt-4 text-sm text-gray-300">Overcast sky that can produce light drizzle or fog.</div>
+            </div>
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Stratocumulus</div>
+                <div class="text-cyan-300">Lumpy low clouds</div>
+                <div class="mt-4 text-sm text-gray-300">Looks like a bumpy blanket. Common in cooler weather.</div>
+            </div>
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
+                <div class="font-semibold text-xl">Altocumulus</div>
+                <div class="text-cyan-300">Mid-level "mackerel sky"</div>
+                <div class="mt-4 text-sm text-gray-300">Small puffs in rows — can precede thunderstorms.</div>
+            </div>
+        </div>
+    </div>
 
     <!-- SKY CAMS -->
     <div id="cams-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
             <i class="fa-solid fa-video"></i> LIVE SKY CAMS • WICHITA AREA
         </h2>
-        <!-- Your existing KSN, KWCH, WeatherBug cards -->
+        <!-- Add your KSN, KWCH, WeatherBug cards here as before -->
     </div>
 
     <footer class="bg-black py-10 text-center text-xs text-gray-400 border-t border-cyan-400/30">
@@ -237,7 +332,6 @@
     </footer>
 
     <script>
-        // Same working script as before for live temperature, wind, sunrise/sunset, forecast, alerts, risk meter
         async function updateCurrentConditions() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.688&longitude=-97.330&current=temperature_2m,wind_speed_10m,wind_direction_10m&temperature_unit=fahrenheit&wind_speed_unit=mph');
@@ -326,7 +420,7 @@
             loadForecast();
             updateAlertsAndRisk();
             setInterval(updateCurrentConditions, 600000);
-            console.log("%c✅ Mel's Radar Page loaded with 10 notable tornadoes in last 20 years", "color:#00f5ff; font-size:14px");
+            console.log("%c✅ Mel's Radar Page loaded with all sections including Today in History & Cloud Types", "color:#00f5ff; font-size:14px");
         };
     </script>
 </body>
