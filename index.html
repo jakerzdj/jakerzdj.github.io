@@ -48,10 +48,10 @@
             box-shadow: 0 0 15px #00f5ff;
         }
         
-        .history-card, .recent-card, .cloud-card {
+        .recent-card, .cloud-card {
             transition: all 0.3s ease;
         }
-        .history-card:hover, .recent-card:hover, .cloud-card:hover {
+        .recent-card:hover, .cloud-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
         }
@@ -79,7 +79,7 @@
                 <a onclick="scrollToSection('radar-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-radar"></i> RADAR</a>
                 <a onclick="scrollToSection('conditions-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud-sun"></i> CONDITIONS</a>
                 <a onclick="scrollToSection('recent-tornadoes')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-tornado"></i> RECENT</a>
-                <a onclick="scrollToSection('history-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-clock-rotate-left"></i> HISTORY</a>
+                <a onclick="scrollToSection('today-history')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-calendar-check"></i> TODAY</a>
                 <a onclick="scrollToSection('clouds-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud"></i> CLOUDS</a>
                 <a onclick="scrollToSection('cams-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-video"></i> SKY CAMS</a>
             </div>
@@ -222,7 +222,7 @@
     </div>
 
     <!-- TODAY IN WEATHER HISTORY – APRIL 7 -->
-    <div class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
+    <div id="today-history" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
             <i class="fa-solid fa-calendar-check"></i> TODAY IN WEATHER HISTORY – APRIL 7
         </h2>
@@ -235,52 +235,7 @@
         </div>
     </div>
 
-    <!-- EXPANDED TORNADO HISTORY -->
-    <div id="history-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
-        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-clock-rotate-left"></i> WICHITA-AREA TORNADO HISTORY
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">APRIL 26, 1991</div>
-                <div class="text-3xl font-semibold mt-2">Andover / Wichita F5</div>
-                <div class="text-cyan-300 mt-1">46-mile path • 17 fatalities • $300+ million damage</div>
-                <div class="mt-6 text-sm text-gray-300">Destroyed Golden Spur Mobile Home Park, damaged McConnell AFB, and tore through Haysville and southeast Wichita.</div>
-            </div>
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">APRIL 14, 2012</div>
-                <div class="text-3xl font-semibold mt-2">Southeast Wichita EF3</div>
-                <div class="text-cyan-300 mt-1">Part of 86-tornado outbreak</div>
-                <div class="mt-6 text-sm text-gray-300">Major damage to Oaklawn and Pinaire Mobile Home Park. No fatalities in Wichita but many injured.</div>
-            </div>
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">APRIL 29, 2022</div>
-                <div class="text-3xl font-semibold mt-2">Andover EF3</div>
-                <div class="text-cyan-300 mt-1">Strong tornado through eastern suburbs</div>
-                <div class="mt-6 text-sm text-gray-300">Significant tree and structural damage in Andover and eastern Wichita metro.</div>
-            </div>
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">MAY 25, 1955</div>
-                <div class="text-3xl font-semibold mt-2">Udall F5 (Nearby)</div>
-                <div class="text-cyan-300 mt-1">80+ fatalities</div>
-                <div class="mt-6 text-sm text-gray-300">Completely destroyed the town of Udall, one of Kansas’ deadliest tornadoes.</div>
-            </div>
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">MAY 4, 2007</div>
-                <div class="text-3xl font-semibold mt-2">Greensburg EF5</div>
-                <div class="text-cyan-300 mt-1">11 fatalities • Town nearly wiped out</div>
-                <div class="mt-6 text-sm text-gray-300">1.7-mile wide EF5 that led to major building code improvements across Kansas.</div>
-            </div>
-            <div class="history-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">MAY 2019</div>
-                <div class="text-3xl font-semibold mt-2">Multiple EF2–EF3 Events</div>
-                <div class="text-cyan-300 mt-1">Wichita metro impacts</div>
-                <div class="mt-6 text-sm text-gray-300">Series of strong tornadoes across central Kansas including areas near Wichita.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLOUD TYPES (clean boxes, no pictures) -->
+    <!-- CLOUD TYPES -->
     <div id="clouds-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
             <i class="fa-solid fa-cloud"></i> COMMON CLOUD TYPES
@@ -324,7 +279,7 @@
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
             <i class="fa-solid fa-video"></i> LIVE SKY CAMS • WICHITA AREA
         </h2>
-        <!-- Add your KSN, KWCH, WeatherBug cards here as before -->
+        <!-- Add your KSN, KWCH, WeatherBug cam cards here -->
     </div>
 
     <footer class="bg-black py-10 text-center text-xs text-gray-400 border-t border-cyan-400/30">
@@ -420,7 +375,7 @@
             loadForecast();
             updateAlertsAndRisk();
             setInterval(updateCurrentConditions, 600000);
-            console.log("%c✅ Mel's Radar Page loaded with all sections including Today in History & Cloud Types", "color:#00f5ff; font-size:14px");
+            console.log("%c✅ Mel's Radar Page loaded – all sections kept except duplicate history", "color:#00f5ff; font-size:14px");
         };
     </script>
 </body>
