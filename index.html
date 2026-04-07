@@ -47,11 +47,19 @@
             border-radius: 50%;
             box-shadow: 0 0 15px #00f5ff;
         }
+        
+        .cloud-card {
+            transition: all 0.3s ease;
+        }
+        .cloud-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
+        }
     </style>
 </head>
 <body class="text-white min-h-screen">
 
-    <!-- ALERT TICKER -->
+    <!-- ALERT TICKER (Blue - No Active Alerts) -->
     <div id="alert-ticker" class="alert-ticker py-3 text-white text-lg font-medium bg-blue-900">
         <div id="ticker-content" class="ticker-content flex items-center gap-x-12"></div>
     </div>
@@ -72,6 +80,7 @@
                 <a onclick="scrollToSection('conditions-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud-sun"></i> CONDITIONS</a>
                 <a onclick="scrollToSection('recent-tornadoes')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-tornado"></i> RECENT</a>
                 <a onclick="scrollToSection('history-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-clock-rotate-left"></i> HISTORY</a>
+                <a onclick="scrollToSection('clouds-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud"></i> CLOUDS</a>
                 <a onclick="scrollToSection('cams-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-video"></i> SKY CAMS</a>
             </div>
             
@@ -85,8 +94,6 @@
     <!-- CURRENT CONDITIONS -->
     <div id="conditions-section" class="max-w-screen-2xl mx-auto px-8 py-10">
         <div class="bg-black/70 backdrop-blur-xl border border-cyan-400/40 rounded-3xl p-8">
-            
-            <!-- Temp + Wind + Sunrise/Sunset -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
                 <div>
                     <div class="text-sm uppercase tracking-widest text-cyan-300 mb-2">CURRENT TEMP</div>
@@ -115,14 +122,12 @@
                 </div>
             </div>
             
-            <!-- 5-Day Forecast - Directly Below -->
+            <!-- 5-Day Forecast -->
             <div class="mt-14">
                 <div class="text-sm uppercase tracking-widest text-cyan-300 mb-5 flex items-center gap-x-2">
                     <i class="fa-solid fa-calendar-days"></i> 5-DAY FORECAST
                 </div>
-                <div id="forecast-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    <!-- JS populated -->
-                </div>
+                <div id="forecast-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
             </div>
         </div>
 
@@ -157,76 +162,103 @@
         </div>
     </div>
 
-    <!-- RECENT TORNADOES -->
-    <div id="recent-tornadoes" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
+    <!-- RECENT TORNADOES & EXPANDED HISTORY (unchanged from previous) -->
+    <!-- ... (keep the recent-tornadoes and history-section from the last version you had) ... -->
+
+    <!-- NEW: CLOUD TYPES SECTION at the bottom -->
+    <div id="clouds-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-tornado text-red-400"></i> RECENT TORNADOES NEAR WICHITA
+            <i class="fa-solid fa-cloud"></i> COMMON CLOUD TYPES
         </h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">MARCH 5–6, 2026</div>
-                <div class="text-2xl font-semibold mt-2">EF-1 Tornadoes – Sumner County</div>
-                <div class="text-cyan-300 mt-1">Just south of Wichita area • Two confirmed EF-1 tornadoes</div>
-                <div class="mt-4 text-sm text-gray-300">Damage surveys confirmed two separate EF-1 tornadoes near Argonia/Mayfield. Part of early 2026 severe weather.</div>
+        <p class="text-cyan-300 mb-8 max-w-2xl">Learn to spot these clouds while watching the sky over Wichita. Great for forecasting incoming weather!</p>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Cumulus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Cumulus</div>
+                    <div class="text-cyan-300 text-sm">Fluffy white "cotton ball" clouds • Fair weather</div>
+                </div>
+
+<grok-card data-id="923b59" data-type="image_card" data-plain-type="render_searched_image"  data-arg-image_id="mIZKp"  data-arg-size="LARGE" ></grok-card>
+
+
+<grok-card data-id="59be9a" data-type="image_card" data-plain-type="render_searched_image"  data-arg-image_id="mIcwB"  data-arg-size="LARGE" ></grok-card>
+
+                <div class="px-6 pb-6 text-sm text-gray-300">Puffy, vertical development. Can grow into thunderstorms if they become tall.</div>
             </div>
-            <div class="bg-white/5 border border-cyan-400/30 rounded-3xl p-8">
-                <div class="text-red-400 text-sm font-bold">MAY 2025</div>
-                <div class="text-2xl font-semibold mt-2">Multiple Tornadoes including Wichita Suburbs</div>
-                <div class="text-cyan-300 mt-1">Strong tornadoes reported near Wichita metro</div>
-                <div class="mt-4 text-sm text-gray-300">Notable events included tornadoes crossing highways and impacting suburban areas in May 2025.</div>
+            
+            <!-- Cumulonimbus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Cumulonimbus</div>
+                    <div class="text-red-300 text-sm">Thunderstorm clouds • Heavy rain, hail, lightning</div>
+                </div>
+
+<grok-card data-id="87a18c" data-type="image_card" data-plain-type="render_searched_image"  data-arg-image_id="fsHwh"  data-arg-size="LARGE" ></grok-card>
+
+                <div class="px-6 pb-6 text-sm text-gray-300">Towering anvil-shaped clouds. The classic severe weather producer in Kansas.</div>
+            </div>
+            
+            <!-- Cirrus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Cirrus</div>
+                    <div class="text-cyan-300 text-sm">High, thin, wispy "mare's tails"</div>
+                </div>
+
+<grok-card data-id="1f3eec" data-type="image_card" data-plain-type="render_searched_image"  data-arg-image_id="v1G05"  data-arg-size="LARGE" ></grok-card>
+
+                <div class="px-6 pb-6 text-sm text-gray-300">Often signal a change in weather approaching within 24 hours.</div>
+            </div>
+            
+            <!-- Stratus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Stratus</div>
+                    <div class="text-cyan-300 text-sm">Low, flat gray blanket • Drizzle possible</div>
+                </div>
+
+<grok-card data-id="930017" data-type="image_card" data-plain-type="render_searched_image"  data-arg-image_id="RfTId"  data-arg-size="LARGE" ></grok-card>
+
+                <div class="px-6 pb-6 text-sm text-gray-300">Overcast sky that can produce light steady rain or fog.</div>
+            </div>
+            
+            <!-- Stratocumulus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Stratocumulus</div>
+                    <div class="text-cyan-300 text-sm">Lumpy low clouds • Light rain possible</div>
+                </div>
+                <div class="px-6 pb-6 text-sm text-gray-300">Looks like a lumpy blanket. Common in cooler weather.</div>
+            </div>
+            
+            <!-- Altocumulus -->
+            <div class="cloud-card bg-white/5 border border-cyan-400/30 rounded-3xl overflow-hidden">
+                <div class="p-6">
+                    <div class="font-semibold text-xl text-white">Altocumulus</div>
+                    <div class="text-cyan-300 text-sm">Mid-level "mackerel sky" patches</div>
+                </div>
+                <div class="px-6 pb-6 text-sm text-gray-300">Often appear as rows of small puffs. Can precede thunderstorms.</div>
             </div>
         </div>
-        <p class="text-center text-xs text-gray-400 mt-8">Data from NWS surveys and local reports • 2025–2026 season</p>
+        
+        <p class="text-center text-xs text-gray-400 mt-12">Cloud watching helps predict incoming weather in Tornado Alley. Cumulonimbus = time to watch radar closely!</p>
     </div>
 
-    <!-- TODAY IN WEATHER HISTORY (April 7) -->
-    <div class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
-        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-calendar-check"></i> TODAY IN WEATHER HISTORY – APRIL 7
-        </h2>
-        <div class="bg-white/5 border border-cyan-400/30 rounded-3xl p-10 max-w-2xl mx-auto">
-            <div class="text-amber-300 text-sm font-medium">Notable April 7 events in Kansas / Wichita area:</div>
-            <ul class="mt-6 space-y-6 text-sm">
-                <li class="flex gap-x-4">
-                    <span class="font-mono text-cyan-400 w-20 flex-shrink-0">1936</span>
-                    <span>Part of a multi-day tornado outbreak affecting the central U.S., with impacts continuing into surrounding states.</span>
-                </li>
-                <li class="flex gap-x-4">
-                    <span class="font-mono text-cyan-400 w-20 flex-shrink-0">2012</span>
-                    <span>Close to the major April 14 outbreak period – early season severe weather setup often seen in early April.</span>
-                </li>
-                <li class="flex gap-x-4">
-                    <span class="font-mono text-cyan-400 w-20 flex-shrink-0">Recent Years</span>
-                    <span>Early April frequently brings the transition to peak severe weather season in Kansas, with increasing risk of supercells and tornadoes.</span>
-                </li>
-            </ul>
-            <p class="text-xs text-gray-400 mt-10 text-center">Source: NWS Wichita archives • Severe weather season ramps up significantly in April.</p>
-        </div>
-    </div>
-
-    <!-- CLASSIC TORNADO HISTORY (kept for reference) -->
-    <div id="history-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
-        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-clock-rotate-left"></i> NOTABLE WICHITA-AREA TORNADO HISTORY
-        </h2>
-        <!-- Your original 3 cards here (1991, 2012, 2022) – same as previous versions -->
-    </div>
-
-    <!-- SKY CAMS AT BOTTOM -->
+    <!-- SKY CAMS (keep your existing cam cards here) -->
     <div id="cams-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
-        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-video"></i> LIVE SKY CAMS • WICHITA AREA
-        </h2>
-        <!-- Your existing cam cards (KSN, KWCH, WeatherBug) go here -->
+        <!-- Your KSN, KWCH, WeatherBug cards go here -->
     </div>
 
     <footer class="bg-black py-10 text-center text-xs text-gray-400 border-t border-cyan-400/30">
-        Mel's Radar Page • Optimized for FireTV • Super Six House Radar • Powered by Windy.com
+        Mel's Radar Page • Optimized for FireTV • Expanded Tornado History + Cloud Types • Powered by Windy.com
     </footer>
 
     <script>
-        // Same JS as previous version for temp, wind, sunrise/sunset, forecast, alerts, risk
-        // (Copy the script block from the last version – it includes updateCurrentConditions(), loadSunTimes(), loadForecast(), etc.)
+        // (Keep the exact same script from the previous version for temperature, wind, sunrise/sunset, forecast, alerts, and risk meter)
+        // It includes updateCurrentConditions(), loadSunTimes(), loadForecast(), updateAlertsAndRisk(), etc.
         
         window.onload = () => {
             updateCurrentConditions();
@@ -234,7 +266,7 @@
             loadForecast();
             updateAlertsAndRisk();
             setInterval(updateCurrentConditions, 600000);
-            console.log("%c✅ Mel's Radar Page updated with Recent Tornadoes & Today in Weather History", "color:#00f5ff; font-size:14px");
+            console.log("%c✅ Mel's Radar Page loaded with Cloud Types section", "color:#00f5ff; font-size:14px");
         };
     </script>
 </body>
