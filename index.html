@@ -48,10 +48,10 @@
             box-shadow: 0 0 15px #00f5ff;
         }
        
-        .recent-card, .cloud-card {
+        .recent-card, .cloud-card, .link-card {
             transition: all 0.3s ease;
         }
-        .recent-card:hover, .cloud-card:hover {
+        .recent-card:hover, .cloud-card:hover, .link-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
         }
@@ -80,7 +80,6 @@
                 <a onclick="scrollToSection('conditions-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud-sun"></i> CONDITIONS</a>
                 <a onclick="scrollToSection('recent-tornadoes')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-tornado"></i> RECENT</a>
                 <a onclick="scrollToSection('clouds-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-cloud"></i> CLOUDS</a>
-                <a onclick="scrollToSection('cams-section')" class="hover:text-cyan-400 cursor-pointer flex items-center gap-x-2"><i class="fa-solid fa-video"></i> SKY CAMS</a>
             </div>
            
             <a href="https://www.weather.gov/ict/" target="_blank"
@@ -239,12 +238,33 @@
         </div>
     </div>
 
-    <!-- SKY CAMS -->
-    <div id="cams-section" class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20">
+    <!-- EXTERNAL LINKS -->
+    <div class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
         <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-video"></i> LIVE SKY CAMS • WICHITA AREA
+            <i class="fa-solid fa-link"></i> EXTERNAL LINKS
         </h2>
-        <!-- Add your KSN, KWCH, WeatherBug cam cards here -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="https://data.cjonline.com/tornado-archive/" target="_blank" 
+               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
+                <i class="fa-solid fa-map text-4xl text-red-400 mb-4"></i>
+                <div class="font-semibold text-xl">Kansas Tornado Archive</div>
+                <div class="text-sm text-gray-400 mt-2">Historical tornado tracks and data from CJOnline</div>
+            </a>
+            
+            <a href="https://www.weather.gov/ict/" target="_blank" 
+               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
+                <i class="fa-solid fa-cloud-sun-rain text-4xl text-cyan-400 mb-4"></i>
+                <div class="font-semibold text-xl">NWS Wichita Office</div>
+                <div class="text-sm text-gray-400 mt-2">Official forecasts, warnings &amp; radar</div>
+            </a>
+            
+            <a href="https://www.windy.com/" target="_blank" 
+               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
+                <i class="fa-solid fa-wind text-4xl text-cyan-400 mb-4"></i>
+                <div class="font-semibold text-xl">Windy.com</div>
+                <div class="text-sm text-gray-400 mt-2">Advanced weather maps &amp; models</div>
+            </a>
+        </div>
     </div>
 
     <footer class="bg-black py-10 text-center text-xs text-gray-400 border-t border-cyan-400/30">
@@ -340,7 +360,7 @@
             loadForecast();
             updateAlertsAndRisk();
             setInterval(updateCurrentConditions, 600000);
-            console.log("%c✅ Mel's Radar Page loaded with 6 notable tornado tiles", "color:#00f5ff; font-size:14px");
+            console.log("%c✅ Mel's Radar Page loaded with External Links at bottom", "color:#00f5ff; font-size:14px");
         };
     </script>
 </body>
