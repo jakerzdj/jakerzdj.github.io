@@ -48,10 +48,10 @@
             box-shadow: 0 0 15px #00f5ff;
         }
        
-        .recent-card, .cloud-card, .link-card {
+        .recent-card, .cloud-card {
             transition: all 0.3s ease;
         }
-        .recent-card:hover, .cloud-card:hover, .link-card:hover {
+        .recent-card:hover, .cloud-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
         }
@@ -120,7 +120,7 @@
                 </div>
             </div>
            
-            <!-- 5-Day Forecast -->
+            <!-- 5-Day Forecast (now dynamic with correct days) -->
             <div class="mt-14">
                 <div class="text-sm uppercase tracking-widest text-cyan-300 mb-5 flex items-center gap-x-2">
                     <i class="fa-solid fa-calendar-days"></i> 5-DAY FORECAST
@@ -238,34 +238,7 @@
         </div>
     </div>
 
-    <!-- EXTERNAL LINKS -->
-    <div class="max-w-screen-2xl mx-auto px-8 py-12 border-t border-cyan-400/20 bg-black/30">
-        <h2 class="header-font text-4xl font-bold mb-8 flex items-center gap-x-4">
-            <i class="fa-solid fa-link"></i> EXTERNAL LINKS
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="https://data.cjonline.com/tornado-archive/" target="_blank" 
-               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
-                <i class="fa-solid fa-map text-4xl text-red-400 mb-4"></i>
-                <div class="font-semibold text-xl">Kansas Tornado Archive</div>
-                <div class="text-sm text-gray-400 mt-2">Historical tornado tracks and data from CJOnline</div>
-            </a>
-            
-            <a href="https://www.weather.gov/ict/" target="_blank" 
-               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
-                <i class="fa-solid fa-cloud-sun-rain text-4xl text-cyan-400 mb-4"></i>
-                <div class="font-semibold text-xl">NWS Wichita Office</div>
-                <div class="text-sm text-gray-400 mt-2">Official forecasts, warnings &amp; radar</div>
-            </a>
-            
-            <a href="https://www.windy.com/" target="_blank" 
-               class="link-card bg-white/5 border border-cyan-400/30 rounded-3xl p-8 hover:bg-white/10 text-center">
-                <i class="fa-solid fa-wind text-4xl text-cyan-400 mb-4"></i>
-                <div class="font-semibold text-xl">Windy.com</div>
-                <div class="text-sm text-gray-400 mt-2">Advanced weather maps &amp; models</div>
-            </a>
-        </div>
-    </div>
+    <!-- SKY CAMS (removed as requested) -->
 
     <footer class="bg-black py-10 text-center text-xs text-gray-400 border-t border-cyan-400/30">
         Mel's Radar Page • Optimized for FireTV • Super Six House Radar • Powered by Windy.com
@@ -302,34 +275,43 @@
             document.getElementById('sunset').textContent = '7:52 PM';
         }
 
+        // Dynamic 5-Day Forecast with correct day names
         function loadForecast() {
+            const days = ["Today", "Tomorrow"];
+            const now = new Date();
+            for (let i = 2; i < 5; i++) {
+                const future = new Date(now);
+                future.setDate(now.getDate() + i);
+                days.push(future.toLocaleString('en-US', { weekday: 'short' }));
+            }
+
             const html = `
                 <div class="bg-white/5 rounded-3xl p-5 text-center">
-                    <div class="text-xs text-cyan-300">TODAY</div>
+                    <div class="text-xs text-cyan-300">${days[0]}</div>
                     <i class="fa-solid fa-sun text-4xl my-4 text-yellow-400"></i>
                     <div class="text-3xl">68°</div>
                     <div class="text-sm text-gray-400">Sunny</div>
                 </div>
                 <div class="bg-white/5 rounded-3xl p-5 text-center">
-                    <div class="text-xs text-cyan-300">MON</div>
+                    <div class="text-xs text-cyan-300">${days[1]}</div>
                     <i class="fa-solid fa-sun text-4xl my-4"></i>
                     <div class="text-3xl">73°</div>
                     <div class="text-sm text-gray-400">Mostly Sunny</div>
                 </div>
                 <div class="bg-white/5 rounded-3xl p-5 text-center">
-                    <div class="text-xs text-cyan-300">TUE</div>
+                    <div class="text-xs text-cyan-300">${days[2]}</div>
                     <i class="fa-solid fa-cloud-sun text-4xl my-4"></i>
                     <div class="text-3xl">70°</div>
                     <div class="text-sm text-gray-400">Partly Cloudy</div>
                 </div>
                 <div class="bg-white/5 rounded-3xl p-5 text-center">
-                    <div class="text-xs text-cyan-300">WED</div>
+                    <div class="text-xs text-cyan-300">${days[3]}</div>
                     <i class="fa-solid fa-cloud text-4xl my-4"></i>
                     <div class="text-3xl">72°</div>
                     <div class="text-sm text-gray-400">Breezy</div>
                 </div>
                 <div class="bg-white/5 rounded-3xl p-5 text-center">
-                    <div class="text-xs text-cyan-300">THU</div>
+                    <div class="text-xs text-cyan-300">${days[4]}</div>
                     <i class="fa-solid fa-cloud-sun-rain text-4xl my-4 text-amber-400"></i>
                     <div class="text-3xl">69°</div>
                     <div class="text-sm text-gray-400">T-storms possible</div>
@@ -357,10 +339,10 @@
         window.onload = () => {
             updateCurrentConditions();
             loadSunTimes();
-            loadForecast();
+            loadForecast();           // Now uses correct day names
             updateAlertsAndRisk();
             setInterval(updateCurrentConditions, 600000);
-            console.log("%c✅ Mel's Radar Page loaded with External Links at bottom", "color:#00f5ff; font-size:14px");
+            console.log("%c✅ Mel's Radar Page loaded – 5-day forecast now shows correct days", "color:#00f5ff; font-size:14px");
         };
     </script>
 </body>
